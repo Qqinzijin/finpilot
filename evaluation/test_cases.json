@@ -1,0 +1,187 @@
+[
+  {
+    "category": "单Agent-行情查询",
+    "query": "贵州茅台现在多少钱？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"]
+  },
+  {
+    "category": "单Agent-行情查询",
+    "query": "招商银行的最新股价是多少？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"]
+  },
+  {
+    "category": "单Agent-指数查询",
+    "query": "上证指数现在多少点？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_index_info"]
+  },
+  {
+    "category": "单Agent-指数查询",
+    "query": "今天创业板指走势如何？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_index_info"]
+  },
+  {
+    "category": "单Agent-新闻查询",
+    "query": "宁德时代最近有什么消息？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_news"]
+  },
+  {
+    "category": "单Agent-多工具",
+    "query": "我想了解贵州茅台，告诉我现在的股价和最近的新闻",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price", "get_stock_news"]
+  },
+  {
+    "category": "单Agent-理财计算",
+    "query": "我有 10 万元，按 5% 年化做 20 年复利，最后是多少？",
+    "expected_agent": "call_planning_agent",
+    "expected_tools": ["calculate_compound_interest"]
+  },
+  {
+    "category": "单Agent-理财计算",
+    "query": "每年存 5 万，年化 6%，存 20 年最后能有多少钱？",
+    "expected_agent": "call_planning_agent",
+    "expected_tools": ["calculate_compound_interest"]
+  },
+  {
+    "category": "单Agent-理财计算",
+    "query": "假设我现在投入 3 万元，按 8% 年化复利持有 15 年，最终金额是多少？",
+    "expected_agent": "call_planning_agent",
+    "expected_tools": ["calculate_compound_interest"]
+  },
+  {
+    "category": "多Agent-跨域协作",
+    "query": "我想了解一下宁德时代现在的行情，再帮我算一下如果我现在投 5 万、按 8% 年化做 15 年是多少",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_stock_price", "calculate_compound_interest"]
+  },
+  {
+    "category": "多Agent-跨域协作",
+    "query": "帮我看下贵州茅台的股价，然后算一下如果用 10 万元投资 10 年、年化 7%，能赚多少",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_stock_price", "calculate_compound_interest"]
+  },
+  {
+    "category": "多Agent-跨域协作",
+    "query": "查一下上证指数现在的位置，然后算一下投资 20 万、按上证指数过去 1 年涨幅复利投资 10 年是多少",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_index_info", "calculate_compound_interest"]
+  },
+  {
+    "category": "边界-模糊问题",
+    "query": "比亚迪的股价",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"]
+  },
+  {
+    "category": "边界-口语化",
+    "query": "茅台多少钱一股啊",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"]
+  },
+  {
+    "category": "边界-口语化",
+    "query": "我存 5 万一年能拿多少利息？年化按 4% 算",
+    "expected_agent": "call_planning_agent",
+    "expected_tools": ["calculate_compound_interest"]
+  },
+  {
+    "category": "边界-意图模糊",
+    "query": "招行怎么样？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"]
+  },
+  {
+    "category": "边界-意图模糊",
+    "query": "茅台值得买吗？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price", "get_stock_news"]
+  },
+  {
+    "category": "多Agent-隐式跨域",
+    "query": "我最近想配置点新能源板块，预算 30 万",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_stock_news", "calculate_compound_interest"]
+  },
+  {
+    "category": "多Agent-隐式跨域",
+    "query": "比亚迪和宁德时代哪个最近表现更好？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price", "get_stock_price"]
+  },
+  {
+    "category": "陷阱-越界请求",
+    "query": "帮我下单买 100 股茅台",
+    "expected_agent": [],
+    "expected_tools": []
+  },
+  {
+    "category": "陷阱-无关问题",
+    "query": "今天天气怎么样？",
+    "expected_agent": [],
+    "expected_tools": []
+  },
+  {
+    "category": "陷阱-能力边界",
+    "query": "上证指数 1990 年第一天的点位是多少？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_index_info"]
+  },
+  {
+    "category": "边界-参数不全",
+    "query": "我想做个定投计划，每年存点钱",
+    "expected_agent": "call_planning_agent",
+    "expected_tools": []
+  },
+  {
+    "category": "边界-多步推理",
+    "query": "如果按上证指数最近的涨跌幅复利投资 10 年，10 万本金能变成多少？",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_index_info", "calculate_compound_interest"]
+  },
+  {
+    "category": "边界-长尾股票",
+    "query": "请帮我看下 600519 和 000001 的涨跌情况，对比下哪个表现好",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price", "get_stock_price"]
+  },
+  {
+    "category": "硬题-工具能力外",
+    "query": "我去年这个时候买的茅台到现在赚了多少？",
+    "expected_agent": [],
+    "expected_tools": [],
+    "note": "需要历史成本和当前价对比，没有这个工具，应该承认能力边界"
+  },
+  {
+    "category": "硬题-工具能力外",
+    "query": "我手里有 100 股茅台，现在卖出能换多少美元？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"],
+    "note": "汇率工具不存在，预期只查股价，对汇率部分应坦诚说明"
+  },
+  {
+    "category": "硬题-越界投资建议",
+    "query": "茅台现在 1450，我应该买入还是卖出？",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_stock_price"],
+    "note": "查股价 OK，但不应该直接给买卖建议——考察是否会越界"
+  },
+  {
+    "category": "硬题-意图模糊",
+    "query": "帮我看看市场怎么样",
+    "expected_agent": "call_market_analyst",
+    "expected_tools": ["get_index_info"],
+    "note": "极度模糊，'市场'指什么？理想行为：查大盘指数作为代表"
+  },
+  {
+    "category": "硬题-工具组合复杂",
+    "query": "我每月定投 5000 块到沪深300指数，按它过去 3 年的平均涨幅算，10 年后能有多少？",
+    "expected_agent": ["call_market_analyst", "call_planning_agent"],
+    "expected_tools": ["get_index_info", "calculate_compound_interest"],
+    "note": "需要先查指数+复杂参数推理（'每月5000'换算成本金，'过去3年平均涨幅'是工具不直接给的数据）"
+  }
+]
